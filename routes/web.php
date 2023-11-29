@@ -13,6 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/clear-cache', function() {
+    $output = [];
+    \Artisan::call('cache:clear', $output);
+	\Artisan::call('config:clear', $output);
+    \Artisan::call('config:cache', $output);	
+    \Artisan::call('view:clear', $output);
+    \Artisan::call('route:clear', $output);
+    \Artisan::call('config:cache', $output);
+    \Artisan::call('storage:link', $output);
+    dd($output);
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
